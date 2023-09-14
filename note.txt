@@ -1,0 +1,34 @@
+server commands
+--------------
+
+#find data in database collection
+    -->databaseName.collectionName.findOne({key:value})-one output
+    -->databaseName.collectionName.find({key:value})-array of objects
+
+
+#To delete
+    -->databaseName.collectionName.deleteOne({key:value}) - deleteCount 1/0
+
+#Create
+    -class  - collection
+            - users         new users({acno:1000,uname:"raju",...})
+
+            new collectionName({objectkeys:value})
+
+#save
+    .save()- only then it will reflect in mongodb  
+
+
+ #Server database integration using conection string
+ ----------------------------------------------------
+
+ library    -   mongoose    -To install - npm i mongoose   
+
+ Environmnetal Variables
+ -----------------------------
+Variables that contain application configuarations needs in run time
+-module    -    process -   module that provide .env service
+-it can convert static working of app into dynamic(local host running to server running)
+
+
+
