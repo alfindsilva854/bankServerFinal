@@ -78,7 +78,7 @@ getBalance = (req, res) => {
       res.status(404).json({
         message: "User not found",
         status: false,
-        statusCode: 404,
+        statusCode: 404
       })
     }
   })
@@ -142,4 +142,24 @@ moneyTransfer = (req, res) => {
   })
 }
 
-module.exports = { register, login, getBalance, moneyTransfer };
+accountStatement=(req,res)=>{
+  const {acno}=req.params
+  users.findOne({acno}).then(user=>{
+    if(user){
+      res.status(200).json({
+        message: user.transactions,
+        status: true,
+        statusCode: 200
+      })
+    }
+    else{
+      res.status(404).json({
+        message: "User not found",
+        status: false,
+        statusCode: 406
+      })
+    }
+  })
+}
+
+module.exports = { register, login, getBalance, moneyTransfer , accountStatement };

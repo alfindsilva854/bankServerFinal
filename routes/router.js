@@ -1,5 +1,5 @@
 const express=require('express')
-const { register,login, getBalance, moneyTransfer} = require('../controllers/logic')
+const { register,login, getBalance, moneyTransfer, accountStatement} = require('../controllers/logic')
 
 
 //router object
@@ -20,6 +20,7 @@ router.get('/bankuser/balance/:acno',getBalance)
 router.post('/bankuser/money-transfer',moneyTransfer)
 
 //account statement
+router.get('/bankuser/account-statement/:acno',accountStatement)
 
 //profile view
 
