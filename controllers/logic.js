@@ -1,4 +1,5 @@
 const users = require("../models/collections");
+const jwt=require('jsonwebtoken')
 
 //register-account creation
 
@@ -49,11 +50,16 @@ login = (req, res) => {
 
   users.findOne({ acno, psw }).then((user) => {
     if (user) {
+
+      //token generation
+      const token=jwt.sign({acno},"secretkey123")
+
       res.status(200).json({
         message: "login success",
         status: true,
         statusCode: 200,
-        currentUser: user.uname
+        currentUser: user.uname,
+        token
       })
     } else {
       res.status(404).json({
@@ -162,4 +168,18 @@ accountStatement=(req,res)=>{
   })
 }
 
-module.exports = { register, login, getBalance, moneyTransfer , accountStatement };
+accountDelete=(req,res)=>{
+  const {acno}=req.params
+  users.deleteOne({acno}).then(data=>{
+    if(data){
+      res.status(200).json({
+        message:"Account deleted successfully",
+        status: true,
+        statusCode: 200
+      })
+    }
+
+  })
+}
+
+module.exports = { register, login, getBalance, moneyTransfer , accountStatement,accountDelete };
